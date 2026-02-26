@@ -10,7 +10,7 @@ const app = express();
 app.use(helmet());
 
 const corsOptions = {
-    origin: env.FRONTEND_URL,
+    origin: '*',
     optionsSuccessStatus: 200,
 };
 app.use(cors(corsOptions));
