@@ -38,6 +38,16 @@ app.use('/api/habits', require('./src/modules/habits/habits.routes'));
 app.use('/api/workouts', require('./src/modules/workouts/workouts.routes'));
 app.use('/api/finance', require('./src/modules/finance/finance.routes'));
 
+// Fallback for root
+app.get('/', (req, res) => {
+    res.status(200).json({ status: 'ok', message: 'Life Dashboard API is running.' });
+});
+
+// Fallback 404 for unknown routes
+app.use((req, res, next) => {
+    res.status(404).json({ error: 'Not Found' });
+});
+
 app.use(errorHandler);
 
 if (require.main === module) {
