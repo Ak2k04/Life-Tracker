@@ -36,7 +36,7 @@ const login = async ({ identifier, password }) => {
   const normalizedIdentifier = identifier.toLowerCase();
 
   const userResult = await db.query(
-    'SELECT id, username, email, password_hash FROM users WHERE email = $1 OR username = $1',
+    'SELECT id, username, email, password_hash FROM users WHERE email = $1 OR username ILIKE $1',
     [normalizedIdentifier]
   );
 
