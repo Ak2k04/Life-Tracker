@@ -7,6 +7,9 @@ const errorHandler = require('./src/middleware/errorHandler');
 
 const app = express();
 
+// Trust the first proxy (Render's load balancer) to ensure rate limiting works properly
+app.set('trust proxy', 1);
+
 app.use(helmet());
 
 const corsOptions = {
